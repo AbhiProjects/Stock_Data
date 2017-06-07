@@ -1,0 +1,7 @@
+venv/
+CSV/*.csv
+LOGS/*.log
+*.pyc
+*/*.pyc
+client_secret.json
+Credentials.json
