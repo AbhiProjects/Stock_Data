@@ -3,9 +3,15 @@ import Yahoo_Finance_Operation
 import Google_Drive_Operations
 
 INPUT_STOCK_SYMBOL_CSV = 'Stock_Symbol.csv'
-OUTPUT_RESULT_CSV = os.path.join(CSV_FOLDER,'Result_%s.csv'%(time.strftime("%d_%m_%Y_%H_%M_%S")))
+OUTPUT_RESULT_CSV = ''
 
 def main():
+    global OUTPUT_RESULT_CSV
+    global LOGGER_FILE_NAME 
+    LOGGER_FILE_NAME  = os.path.join(LOGS_FOLDER,'STOCK_LOG_%s.log'%(time.strftime("%d_%m_%Y_%H_%M_%S")))
+    OUTPUT_RESULT_CSV = os.path.join(CSV_FOLDER,'Result_%s.csv'%(time.strftime("%d_%m_%Y_%H_%M_%S")))
+    setup_logging(LOGGER_NAME,LOGGER_FILE_NAME)
+
     Logger = logging.getLogger(LOGGER_NAME)
     Logger.info('Execution Started At %s'%(time.strftime("%d-%m-%Y %H:%M:%S")))
     

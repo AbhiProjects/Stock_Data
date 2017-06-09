@@ -16,7 +16,7 @@ CSV_FOLDER = 'CSV'
 LOGS_FOLDER = 'LOGS'
 
 LOGGER_NAME = 'STOCK'
-LOGGER_FILE_NAME = os.path.join(LOGS_FOLDER,'STOCK_LOG_%s.log'%(time.strftime("%d_%m_%Y_%H_%M_%S")))
+LOGGER_FILE_NAME = ''
 
 def setup_logging(Logger_Name,Logger_File_Name):
     Logger = logging.getLogger(Logger_Name)
@@ -32,8 +32,6 @@ def setup_logging(Logger_Name,Logger_File_Name):
     File_Handler.setLevel(logging.DEBUG)
     File_Handler.setFormatter(Formatter)
     Logger.addHandler(File_Handler)
-
-setup_logging(LOGGER_NAME,LOGGER_FILE_NAME)
 
 def get_api_request(Url):
     Response = requests.get(Url)
@@ -67,5 +65,3 @@ def csv_write(File_Name,Data,Open_Type='wb'):
         Logger.error(['CSV Write',File_Name,Open_Type], exc_info=True)
     else:
         return 'OK'
-        
-
