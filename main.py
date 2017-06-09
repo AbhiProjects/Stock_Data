@@ -50,9 +50,15 @@ def main():
     csv_write(OUTPUT_RESULT_CSV,Stock_Data,Open_Type='wb')
     Logger.info('CSV Results Written')
     
-    Google_Drive_Operations.main(OUTPUT_RESULT_CSV,LOGGER_FILE_NAME)
+    Service,Log_Folder_ID = Google_Drive_Operations.main(OUTPUT_RESULT_CSV)
     
     Logger.info('Execution Ended At %s'%(time.strftime("%d-%m-%Y %H:%M:%S")))
+    
+    if Google_Drive_Operations.upload_files(Service,LOGGER_FILE_NAME,Folder_ID = Log_Folder_ID,
+                    File_Mime_Type = 'text/plain',Google_Mime_Type = None) == True:
+        Logger.info('%s File Uploaded'%(LOGGER_FILE_NAME))
+    else:
+        Logger.error('%s Upload Failure'%(LOGGER_FILE_NAME))
 
 if __name__ == '__main__':
     main()

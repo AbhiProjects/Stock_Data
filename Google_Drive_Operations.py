@@ -92,7 +92,7 @@ def upload_files(Service,File_Name,Folder_ID = None,File_Mime_Type = None,Google
     else:
         return False
     
-def main(CSV_File,Logs_File):
+def main(CSV_File):
     Logger = logging.getLogger(LOGGER_NAME)
     Logger.info('Google Drive Operations Started')
     try:
@@ -117,11 +117,9 @@ def main(CSV_File,Logs_File):
         Logger.info('%s File Uploaded'%(CSV_File))
     else:
         Logger.error('%s Upload Failure'%(CSV_File))
-
-    if upload_files(Service,Logs_File,Folder_ID = Folder_List.get(LOGS_FOLDER,None),
-                    File_Mime_Type = 'text/plain',Google_Mime_Type = None) == True:
-        Logger.info('%s File Uploaded'%(Logs_File))
-    else:
-        Logger.error('%s Upload Failure'%(Logs_File))
     
-    Logger.info('Google Drive Operations Ended')
+    Logger.info('Google Drive CSV Operations Ended')
+    
+    Log_Folder_ID = Folder_List.get(LOGS_FOLDER,None)
+    
+    return (Service,Log_Folder_ID)
