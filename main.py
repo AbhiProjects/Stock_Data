@@ -32,6 +32,16 @@ def main():
                     Input_Data.append(Column)
         Logger.info('Stock Symbol Read From CSV')
     
+    try:
+        Service = Google_Drive_Operations.create_service()
+        if Service is None:
+            raise Exception('Google Login Unsuccessful')
+    except Exception as e:
+        Logger.error('Exception in Google Login', exc_info=True)
+        return None
+    else:
+        Logger.info('Google Login Successful')
+        
     Stock_Data = Yahoo_Finance_Operation.main(Input_Data)
     if not Stock_Data:
         Logger.error('No Results Found')
